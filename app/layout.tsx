@@ -4,8 +4,8 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'HybridHive App',
-  description: 'Manage accounts and send tokens through HybridHive',
+  title: 'MonoBee App',
+  description: 'Manage accounts and send tokens through MonoBee',
 }
 
 export default function RootLayout({
