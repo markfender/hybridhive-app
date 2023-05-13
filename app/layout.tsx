@@ -70,18 +70,4 @@ export default function RootLayout({
       </body>
     </html>
   )
-  /*
-  return (
-    <html lang="en">
-      <body className={inter.className}>
-            <Link href="/account">
-              Account
-            </Link>
-            <Link href="/transfer">
-              Transfer
-            </Link>
-      </body>
-    </html>
-  )
-  */
 }

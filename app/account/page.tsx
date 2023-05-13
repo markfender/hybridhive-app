@@ -4,11 +4,13 @@ import { useRef, useState, useEffect } from 'react'
 
 import { useAddress, useContract, useContractRead, useSDK } from '@thirdweb-dev/react'
 
+import { Goerli, Gnosis } from '@thirdweb-dev/chains'
+
 const ROOT_AGGREGATOR_ID = 7
 
-const CONTRACT_ADDRESS = "0xd3860c5Fb068b7f12aA81770dA5556786023ea98"
+const GOERLI_CONTRACT_ADDRESS = "0xd3860c5Fb068b7f12aA81770dA5556786023ea98"
 
-import CONTRACT_ABI from '@/abi/0xd386_HybridHiveCore'
+import GOERLI_CONTRACT_ABI from '@/abi/0xd386_HybridHiveCore'
 
 export default function Account() {
   
@@ -19,50 +21,62 @@ export default function Account() {
   const [tokenDataStatus, setTokenDataStatus] = useState<string>("init")
 
   const [error, setError] = useState<string | null>(null)
+  
+  const [network, setNetwork] = useState<string | null>(null)
+  
+  const [balance, setBalance] = useState<string | null>(null)
 
   useEffect(() => {
     (async () => {
 
-      if(!address || !sdk) {
-        return
-      }
-
       if(tokenDataStatus == "init") {
+
+        if(!address || !sdk || !sdk?.wallet) {
+          return
+        }
+        
+        const chainId = await sdk!.wallet.getChainId()
+        
+        let contract_address;
+        let contract_abi;
+        
+        if( chainId == Goerli.chainId ) {
+          setNetwork("Goerli")
+          contract_address = GOERLI_CONTRACT_ADDRESS;
+          contract_abi = GOERLI_CONTRACT_ABI;
+          
+        } else if( chainId == Gnosis.chainId ) {
+          setNetwork("Gnosis")
+          // TODO
+
+        } else {
+          setNetwork("unsupported")
+          return
+        }
 
         setTokenDataStatus("loading")
 
-        const balance = await sdk.wallet.balance()
-        console.log("Balance:", balance)
+        const balance = await sdk!.wallet.balance()
 
-        const contract = await sdk.getContract(CONTRACT_ADDRESS, CONTRACT_ABI);
+        console.log("Balance:", balance.displayValue)
 
-        console.log("Get DENOMINATOR...")
+        alert("Balance:" + balance.displayValue)
+        
+        setBalance(balance.displayValue)
 
-        const data = await contract.call("DENOMINATOR", [])
+        const contract = await sdk!.getContract(contract_address as string, contract_abi as any);
 
-        console.log(data)
-        console.log(data.toString())
-        console.log(data.toNumber())
+        const tokensInNetwork = await contract.call("getTokensInNetwork", [ROOT_AGGREGATOR_ID])
+        
+        alert("Tokens in network:" + tokensInNetwork.join(", "))
 
         setTokenDataStatus("done")
-
-        /*
-
-        console.log("Load account data...")
-        const data = await contract.call("DENOMINATOR", [])
-        
-        console.log(data)
-        console.log(data.toString())
-        console.log(data.toNumber())
-
-        //const tokensInNetwork = await contract.call("getTokenBalance", [])
-        */
       }
       
     })().catch(error => setError(String(error)))
-  })
+  }, [address, sdk, tokenDataStatus])
 
-  if(!address) {
+  if(!address || network == null) {
     return (
       <>
         <h1>Account</h1>
@@ -89,10 +103,21 @@ export default function Account() {
     )
   }
 
+  if(network == "unsupported") {
+    return (
+      <>
+        <h1>Account</h1>
+        <p>The network that you chose is unsupported. Supported: Goerli, Gnosis.</p>
+      </>
+    )
+  }
+
   return (
     <>
       <h1>Account</h1>
       <p>Wallet: {address}</p>
+      <p>Balance: {balance}</p>
+      <p>Network: {network}</p>
 
       <p>Total global share: x%</p>
       <table>
