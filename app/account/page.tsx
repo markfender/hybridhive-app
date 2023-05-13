@@ -14,20 +14,39 @@ export default function Account() {
   
   const address = useAddress()
 
-  const { contract, isContractLoading, contractError } = useContract(CONTRACT_ADDRESS, CONTRACT_ABI)
-
-  const [generalError, setGeneralError] = useState<string | null>(null)
-
   const sdk = useSDK();
 
-  const isTokenDataLoaded = useRef<boolean>(false)
+  const [tokenDataStatus, setTokenDataStatus] = useState<string>("init")
+
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     (async () => {
 
-      if(!isTokenDataLoaded.current && !isContractLoading && !contractError) {
+      if(!address) {
+        return
+      }
 
-        isTokenDataLoaded.current = true
+      if(tokenDataStatus == "init") {
+
+        setTokenDataStatus("loading")
+
+        const balance = await sdk.wallet.balance()
+        console.log("Balance:", balance)
+
+        const contract = await sdk.getContract(CONTRACT_ADDRESS, CONTRACT_ABI);
+
+        console.log("Get DENOMINATOR...")
+
+        const data = await contract.call("DENOMINATOR", [])
+
+        console.log(data)
+        console.log(data.toString())
+        console.log(data.toNumber())
+
+        setTokenDataStatus("done")
+
+        /*
 
         console.log("Load account data...")
         const data = await contract.call("DENOMINATOR", [])
@@ -37,9 +56,10 @@ export default function Account() {
         console.log(data.toNumber())
 
         //const tokensInNetwork = await contract.call("getTokenBalance", [])
+        */
       }
       
-    })().catch(error => setGeneralError(String(error)))
+    })().catch(error => setError(String(error)))
   })
 
   if(!address) {
@@ -51,7 +71,7 @@ export default function Account() {
     )
   }
 
-  if(isContractLoading) {
+  if(tokenDataStatus == "loading") {
     return (
       <>
         <h1>Account</h1>
@@ -60,15 +80,11 @@ export default function Account() {
     )
   }
 
-  if(contractError) {
-    setGeneralError(contractError)
-  }
-
-  if(generalError) {
+  if(error) {
     return (
       <>
         <h1>Account</h1>
-        <p>Error: {generalError}</p>
+        <p>Error: {error}</p>
       </>
     )
   }
@@ -80,21 +96,25 @@ export default function Account() {
 
       <p>Total global share: x%</p>
       <table>
-        <tr>
-          <th>Token</th>
-          <th>Balance</th>
-          <th>Global share</th>
-        </tr>
-        <tr>
-          <td>Token A</td>
-          <td>100</td>
-          <td>0.1%</td>
-        </tr>
-        <tr>
-          <td>Token B</td>
-          <td>100</td>
-          <td>0.1%</td>
-        </tr>
+        <thead>
+          <tr>
+            <th>Token</th>
+            <th>Balance</th>
+            <th>Global share</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Token A</td>
+            <td>100</td>
+            <td>0.1%</td>
+          </tr>
+          <tr>
+            <td>Token B</td>
+            <td>100</td>
+            <td>0.1%</td>
+          </tr>
+        </tbody>
       </table>
     </>
   )

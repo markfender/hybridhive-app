@@ -35,7 +35,7 @@ export default function RootLayout({
 
     <html lang="en">
       <body className={inter.className}>
-        <ThirdwebProvider activeChain="ethereum">
+        <ThirdwebProvider activeChain="goerli">
           <div className="flex flex-col flex-start min-h-screen">
             <header className="flex flex-row justify-center p-[50px] bg-[#4D4D4D] grow-0">
               <div className="flex flex-row justify-between align-center w-3/4 max-w-screen-lg">
