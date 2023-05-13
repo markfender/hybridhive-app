@@ -8,7 +8,7 @@
 
 .nav-bar a {
   @apply flex flex-row flex-nowrap items-center;
-  @apply mr-[30px] py-4 px-6 bg-[#FF3D00] font-semibold text-2xl;
+  @apply mr-[30px] py-4 px-6 bg-[#FF3D00] font-semibold text-xl;
 }
 
 .nav-bar img {

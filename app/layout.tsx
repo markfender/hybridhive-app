@@ -46,7 +46,7 @@ export default function RootLayout({
                 <ConnectWallet className="connect-wallet-button"/>
               </div>
             </header>
-            <nav className="flex flex-row justify-center bg-[#FFDE2E] p-[50px] grow-0">
+            <nav className="flex flex-row justify-center bg-[#FFD12E] p-[25px] grow-0">
               <div className="flex flex-row w-3/4 max-w-screen-lg text-white nav-bar">
                 <Link href="/"><Image src={NavStart} alt ="" height={25} />Start</Link>
                 <Link href="/account"><Image src={NavAccount} alt ="" height={30} />Account</Link>
