@@ -1,6 +1,6 @@
 "use client"
 
-export default function Start() {
+export default function Home() {
   return (
     <>
       <h1>HybridHive</h1>

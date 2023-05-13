@@ -16,9 +16,9 @@
 }
 
 .main-section h1 {
-  @apply text-2xl mb-4;
+  @apply text-5xl mb-4;
 }
 
-.main-section h1 {
-  @apply text-lg mb-2 leading-loose;
+.main-section p {
+  @apply text-xl mb-2 leading-loose;
 }

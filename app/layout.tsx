@@ -54,15 +54,14 @@ export default function RootLayout({
                 <Link href="/network"><Image src={NavNetwork} alt ="" height={30} />Network</Link>
               </div>
             </nav>
-            <section className="flex flex-row justify-center p-[50px] main-section grow">
-
-              <div className="nav-bar flex flex-row w-3/4 max-w-screen-lg">
+            <section className="flex flex-row justify-center p-[50px] grow">
+              <div className=" main-section flex flex-col items-start w-3/4 max-w-screen-lg">
                 {children}
               </div>
 
             </section>
-            <footer className="flex flex-row justify-center bg-[#E9E9E9] py-[25px] grow-0">
-              <p className="text-lg text-[#333]">© 2023 hybridhive</p>
+            <footer className="flex flex-row justify-center bg-[#EEEEEE] py-[25px] grow-0">
+              <p className="text-lg text-[#222]">© 2023 hybridhive</p>
             </footer>
           </div>
         </ThirdwebProvider>
