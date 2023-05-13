@@ -9,6 +9,7 @@
 .nav-bar a {
   @apply flex flex-row flex-nowrap items-center;
   @apply mr-[30px] py-4 px-6 bg-[#FF3D00] font-semibold text-xl;
+  border-radius: 10px;
 }
 
 .nav-bar img {
@@ -21,4 +22,20 @@
 
 .main-section p {
   @apply text-xl mb-2 leading-loose;
+}
+
+.account-table {
+  min-width: 500px; 
+}
+
+.account-table td, .account-table th {
+  @apply p-[10px] text-xl font-normal text-left;
+}
+
+.account-table tbody tr {
+  @apply border-t border-gray-300;
+}
+
+.cap-label, .account-table th {
+  @apply uppercase text-gray-500;
 }
