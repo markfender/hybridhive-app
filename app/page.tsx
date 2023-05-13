@@ -1,13 +1,10 @@
 "use client"
 
-import { ConnectWallet } from "@thirdweb-dev/react";
-
 export default function Home() {
   return (
-    <main>
+    <>
       <h1>HybridHive</h1>
-      <h2>Connect wallet</h2>
-      <ConnectWallet />
-    </main>
+      <p>A protocol to manages a basket of tokens, tries to combine the benefits of single-currency and multi-currency systems</p>
+    </>
   )
 }
