@@ -1,9 +1,14 @@
+"use client"
+
 import './globals.css'
+
+import { ThirdwebProvider } from "@thirdweb-dev/react";
+
 import { Inter } from 'next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export const metadata = {
+const metadata = {
   title: 'MonoBee App',
   description: 'Manage accounts and send tokens through MonoBee',
 }
@@ -15,7 +20,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <ThirdwebProvider activeChain="ethereum">
+          {children}
+        </ThirdwebProvider>
+      </body>
     </html>
   )
 }
