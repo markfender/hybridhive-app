@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect } from 'react'
 
-import { useAddress, useContract, useContractRead, useSDK } from '@thirdweb-dev/react'
+import { useAddress, useContract, useContractRead, useSDK, useConnectionStatus, useWallet } from '@thirdweb-dev/react'
 
 import { Goerli, Gnosis } from '@thirdweb-dev/chains'
 
@@ -16,7 +16,12 @@ export default function Account() {
   
   const address = useAddress()
 
+  const wallet = useWallet()
+
   const sdk = useSDK();
+
+  // To trigger a re-render when this changes
+  const connectionStatus = useConnectionStatus();
 
   const [tokenDataStatus, setTokenDataStatus] = useState<string>("init")
 
@@ -138,6 +143,20 @@ export default function Account() {
   }, [address, sdk, tokenDataStatus])
 
   if(!address || network == null) {
+    
+    // Doesn't work
+    //if(!address || network == null || connectionStatus !== "connected") {
+
+    // Reset
+    if(tokenDataStatus !== "init")
+      setTokenDataStatus("init")
+
+    if(balance !== null)
+      setBalance(null)
+
+    if(error !== null)
+      setError(null)
+
     return (
       <>
         <h1>Account</h1>
@@ -150,7 +169,7 @@ export default function Account() {
     return (
       <>
         <h1>Account</h1>
-        <p>Loading...</p>
+        <p>Loading your token balances...</p>
       </>
     )
   }
@@ -187,7 +206,7 @@ export default function Account() {
     <>
       <h1>Account</h1>
 
-      <div className="text-2xl mt-[50px] mb-[40px]">
+      <div className="text-2xl mt-[50px] mb-[60px]">
         <span className="cap-label">Total global share:</span>
         <span className='text-black p-4 bg-[#FFF4D8] font-bold ml-4'>{totalGlobalShare}%</span>
       </div>
