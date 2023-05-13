@@ -19,6 +19,8 @@ import NavAccount from '@/public/account.svg'
 import NavTransfer from '@/public/transfer.svg'
 import NavNetwork from '@/public/network.svg'
 
+import { Goerli, Gnosis } from '@thirdweb-dev/chains'
+
 const inter = Inter({ subsets: ['latin'] })
 
 const metadata = {
@@ -35,7 +37,7 @@ export default function RootLayout({
 
     <html lang="en">
       <body className={inter.className}>
-        <ThirdwebProvider activeChain="goerli">
+        <ThirdwebProvider activeChain={Goerli} supportedChains={[Goerli, Gnosis]}>
           <div className="flex flex-col flex-start min-h-screen">
             <header className="flex flex-row justify-center p-[50px] bg-[#4D4D4D] grow-0">
               <div className="flex flex-row justify-between align-center w-3/4 max-w-screen-lg">

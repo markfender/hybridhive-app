@@ -8,7 +8,7 @@ const ROOT_AGGREGATOR_ID = 7
 
 const CONTRACT_ADDRESS = "0xd3860c5Fb068b7f12aA81770dA5556786023ea98"
 
-import CONTRACT_ABI from '@/abi/0xd386_HybridHiveCore.ts'
+import CONTRACT_ABI from '@/abi/0xd386_HybridHiveCore'
 
 export default function Account() {
   
@@ -23,7 +23,7 @@ export default function Account() {
   useEffect(() => {
     (async () => {
 
-      if(!address) {
+      if(!address || !sdk) {
         return
       }
 
