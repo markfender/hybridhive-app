@@ -70,7 +70,7 @@ export default function Account() {
         }
         
         //alert(chainId)
-        alert(await sdk!.wallet.getAddress())
+        //alert(await sdk!.wallet.getAddress())
 
         setTokenDataStatus("loading")
 
@@ -78,7 +78,7 @@ export default function Account() {
 
         console.log("Balance:", balance.displayValue)
 
-        alert("Balance:" + balance.displayValue)
+        //alert("Balance:" + balance.displayValue)
         
         setBalance(balance.displayValue)
 
@@ -94,11 +94,11 @@ export default function Account() {
         
         const denominator = (await contract.call("DENOMINATOR",[])).toNumber()
         
-        alert("Denominator:" + String(denominator))
+        //alert("Denominator:" + String(denominator))
 
         const tokenIds: number[] = await contract.call("getTokensInNetwork", [ROOT_AGGREGATOR_ID])
         
-        alert("Tokens in network:" + tokenIds.join(", "))
+        //alert("Tokens in network:" + tokenIds.join(", "))
 
         const tokenData: { [index: number]: any } = {}
 
@@ -123,13 +123,13 @@ export default function Account() {
           tokenData[item]['allowed'] = allowedResult[index];
         })
 
-        alert(JSON.stringify(tokenData))
+        //alert(JSON.stringify(tokenData))
         
         // balance = 0, allowed = true: display a token that you are allowed to hold even though you have a zero balance
         // balance > 0, allowed = false: display frozen assets
         const displayTokenIds = tokenIds.filter(id => tokenData[id]['balance'] > 0 || tokenData[id]['allowed'] == true)
         
-        alert("Display tokens:" + displayTokenIds.join(", "))
+        //alert("Display tokens:" + displayTokenIds.join(", "))
 
         const globalSharePromise = Promise.all(displayTokenIds.map(id => contract.call("getGlobalTokenShare", [ROOT_AGGREGATOR_ID, id, tokenData[id]['balance']])))
         const tokenNamePromise = Promise.all(displayTokenIds.map(id => contract.call("getEntityName", [1,id])))
@@ -143,7 +143,7 @@ export default function Account() {
           tokenData[item]['token_name'] = tokenNameResult[index];
         })
         
-        alert(JSON.stringify(tokenData))
+        //alert(JSON.stringify(tokenData))
         
         setUserTokenData(tokenData)
 
