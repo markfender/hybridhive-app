@@ -12,7 +12,8 @@ import { ConnectWallet } from "@thirdweb-dev/react";
 
 import Image from 'next/image'
 
-import HHLogo from '@/public/hybridhive-logo.png'
+import HHLogo from '@/public/hhlogo.svg'
+//import HHLogo from '@/public/hybridhive-logo.png'
 
 import NavStart from '@/public/start.svg'
 import NavAccount from '@/public/account.svg'
@@ -37,12 +38,12 @@ export default function RootLayout({
 
     <html lang="en">
       <body className={inter.className}>
-        <ThirdwebProvider activeChain={Goerli} supportedChains={[Goerli, Gnosis]} autoConnect={false}>
+        <ThirdwebProvider activeChain={Gnosis} supportedChains={[Gnosis]} autoConnect={false}>
           <div className="flex flex-col flex-start min-h-screen">
             <header className="flex flex-row justify-center p-[50px] bg-[#4D4D4D] grow-0">
               <div className="flex flex-row justify-between align-center w-3/4 max-w-screen-lg">
                 <div className="flex flex-row items-center">
-                  <Image src={HHLogo} alt="" className="mr-4"/>
+                  <Image src={HHLogo} alt="" className="mr-4" width={100}/>
                   <h1 className="text-5xl text-white">hybridhive</h1>
                 </div>
                 <ConnectWallet className="connect-wallet-button"/>

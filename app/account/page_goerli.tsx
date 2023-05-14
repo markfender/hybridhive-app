@@ -6,14 +6,15 @@ import { useAddress, useContract, useContractRead, useSDK, useConnectionStatus, 
 
 import { Goerli, Gnosis } from '@thirdweb-dev/chains'
 
-const ROOT_AGGREGATOR_ID = 1
+const ROOT_AGGREGATOR_ID = 7
 
-// GNOSIS ONLY
-const CONTRACT_ADDRESS = "0x274f031d2E7f97A0395451DCb19108bB94bBb3f4"
+const GOERLI_CONTRACT_ADDRESS = "0xd3860c5Fb068b7f12aA81770dA5556786023ea98"
 
-import CONTRACT_ABI from '@/abi/gnosis_abi.json'
+import GOERLI_CONTRACT_ABI from '@/abi/0xd386_HybridHiveCore'
 
 export default function Account() {
+
+  console.log("Render Account page")
   
   const address = useAddress()
 
@@ -56,21 +57,17 @@ export default function Account() {
         
         if( chainId == Goerli.chainId ) {
           setNetwork("Goerli")
-          throw Error("Goerli")
+          contract_address = GOERLI_CONTRACT_ADDRESS;
+          contract_abi = GOERLI_CONTRACT_ABI;
           
         } else if( chainId == Gnosis.chainId ) {
           setNetwork("Gnosis")
-
-          contract_address = CONTRACT_ADDRESS;
-          contract_abi = CONTRACT_ABI;
+          // TODO
 
         } else {
           setNetwork("unsupported")
           return
         }
-        
-        //alert(chainId)
-        alert(await sdk!.wallet.getAddress())
 
         setTokenDataStatus("loading")
 
@@ -152,7 +149,7 @@ export default function Account() {
       
     })().catch(error => setError(String(error)))
   }, [address, sdk, tokenDataStatus])
-  
+
   if(!address || network == null) {
     
     // Doesn't work
@@ -176,7 +173,7 @@ export default function Account() {
     )
   }
 
-  if(tokenDataStatus == "loading" || userTokenData == null) {
+  if(tokenDataStatus == "loading") {
     return (
       <>
         <h1>Account</h1>
@@ -260,6 +257,7 @@ export default function Account() {
       <div className="mt-[40px]">
         <h2 className="text-5xl mb-4">Info</h2>
         <p className="text-base">Wallet: {address}</p>
+        <p className="text-base">Balance: {balance?.substring(0,5)} ETH</p>
         <p className="text-base">Network: {network}</p>
       </div>
     </>
