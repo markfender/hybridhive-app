@@ -9,7 +9,8 @@ import { Goerli, Gnosis } from '@thirdweb-dev/chains'
 const ROOT_AGGREGATOR_ID = 1
 
 // GNOSIS ONLY
-const CONTRACT_ADDRESS = "0x274f031d2E7f97A0395451DCb19108bB94bBb3f4"
+//const CONTRACT_ADDRESS = "0x274f031d2E7f97A0395451DCb19108bB94bBb3f4"
+const CONTRACT_ADDRESS = "0x6256e164DcDE2a6EFfc9b6F3dFa072C9A5e67C29"
 
 import CONTRACT_ABI from '@/abi/gnosis_abi.json'
 

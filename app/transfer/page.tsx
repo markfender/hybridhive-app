@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
       <h1>Transfer</h1>
-      <Image src={TransferMock} alt="transfer" />
+      <Image src={TransferMock} width={600} alt="transfer" className="mt-[70px]"/>
     </>
   )
 }
