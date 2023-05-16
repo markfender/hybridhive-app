@@ -13,32 +13,21 @@ const GOERLI_CONTRACT_ADDRESS = "0xd3860c5Fb068b7f12aA81770dA5556786023ea98"
 import GOERLI_CONTRACT_ABI from '@/abi/0xd386_HybridHiveCore'
 
 export default function Account() {
-
   console.log("Render Account page")
-  
   const address = useAddress()
-
   const wallet = useWallet()
-
   const sdk = useSDK();
 
   const switchChain = useSwitchChain()
-
   const hasMismatch = useNetworkMismatch()
 
   // To trigger a re-render when this changes
   const connectionStatus = useConnectionStatus();
-
   console.log(connectionStatus)
-
   const [tokenDataStatus, setTokenDataStatus] = useState<string>("init")
-
   const [error, setError] = useState<string | null>(null)
-  
-  const [network, setNetwork] = useState<string | null>(null)
-  
+  const [network, setNetwork] = useState<string | null>(null)  
   const [balance, setBalance] = useState<string | null>(null)
-  
   const [userTokenData, setUserTokenData] = useState<{ [index: number]: any } | null>(null)
 
   useEffect(() => {
@@ -236,21 +225,6 @@ export default function Account() {
               </tr>
             ))
           }
-          <tr>
-            <td>Test token 1</td>
-            <td>100</td>
-            <td>0.5 %</td>
-          </tr>
-          <tr>
-            <td>Test token 2</td>
-            <td>300</td>
-            <td>5 %</td>
-          </tr>
-          <tr>
-            <td>Test token 3</td>
-            <td>10</td>
-            <td>6.5 %</td>
-          </tr>
         </tbody>
       </table>
 

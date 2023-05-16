@@ -10,7 +10,7 @@ const ROOT_AGGREGATOR_ID = 1
 
 // GNOSIS ONLY
 //const CONTRACT_ADDRESS = "0x274f031d2E7f97A0395451DCb19108bB94bBb3f4"
-const CONTRACT_ADDRESS = "0x6256e164DcDE2a6EFfc9b6F3dFa072C9A5e67C29"
+let CONTRACT_ADDRESS = "0x48970e9366E603eF443B07180075237aC4426ac4"//"0x6256e164DcDE2a6EFfc9b6F3dFa072C9A5e67C29"
 
 import CONTRACT_ABI from '@/abi/gnosis_abi.json'
 
@@ -28,17 +28,11 @@ export default function Account() {
 
   // To trigger a re-render when this changes
   const connectionStatus = useConnectionStatus();
-
   console.log(connectionStatus)
-
   const [tokenDataStatus, setTokenDataStatus] = useState<string>("init")
-
   const [error, setError] = useState<string | null>(null)
-  
   const [network, setNetwork] = useState<string | null>(null)
-  
   const [balance, setBalance] = useState<string | null>(null)
-  
   const [userTokenData, setUserTokenData] = useState<{ [index: number]: any } | null>(null)
 
   useEffect(() => {
@@ -57,11 +51,13 @@ export default function Account() {
         
         if( chainId == Goerli.chainId ) {
           setNetwork("Goerli")
-          throw Error("Goerli")
-          
+
+          alert("we are on goerli")
+          contract_address = "0x48970e9366E603eF443B07180075237aC4426ac4";
+          contract_abi = CONTRACT_ABI;
         } else if( chainId == Gnosis.chainId ) {
           setNetwork("Gnosis")
-
+          alert("we are on gnosis")
           contract_address = CONTRACT_ADDRESS;
           contract_abi = CONTRACT_ABI;
 
@@ -77,7 +73,7 @@ export default function Account() {
 
         const balance = await sdk!.wallet.balance()
 
-        console.log("Balance:", balance.displayValue)
+        console.log("Balance:", balance, balance.displayValue)
 
         //alert("Balance:" + balance.displayValue)
         

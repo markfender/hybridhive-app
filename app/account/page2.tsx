@@ -255,21 +255,6 @@ export default function Account() {
               </tr>
             ))
           }
-          <tr>
-            <td>Test token 1</td>
-            <td>100</td>
-            <td>0.5 %</td>
-          </tr>
-          <tr>
-            <td>Test token 2</td>
-            <td>300</td>
-            <td>5 %</td>
-          </tr>
-          <tr>
-            <td>Test token 3</td>
-            <td>10</td>
-            <td>6.5 %</td>
-          </tr>
         </tbody>
       </table>
 
