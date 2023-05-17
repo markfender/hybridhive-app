@@ -13,11 +13,11 @@ import {
 
 import { Goerli, Gnosis } from "@thirdweb-dev/chains";
 
-const ROOT_AGGREGATOR_ID = 1;
+const ROOT_AGGREGATOR_ID = 7;
 
 // GNOSIS ONLY
 //const CONTRACT_ADDRESS = "0x274f031d2E7f97A0395451DCb19108bB94bBb3f4"
-let CONTRACT_ADDRESS = "0x48970e9366E603eF443B07180075237aC4426ac4"; //"0x6256e164DcDE2a6EFfc9b6F3dFa072C9A5e67C29"
+let CONTRACT_ADDRESS = "0x64e0791Afa5FF37b5Cce3939aaCA72A500e65F2A"; //"0x6256e164DcDE2a6EFfc9b6F3dFa072C9A5e67C29"
 
 import CONTRACT_ABI from "@/abi/gnosis_abi.json";
 import { WrapperContext } from "./WrapperContext";

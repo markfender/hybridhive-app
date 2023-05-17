@@ -10,16 +10,16 @@ const NETWORK_DATA = {
   // Goerli
   5: {
     root_aggregator_id: 1,
-    contract_address: "0x48970e9366E603eF443B07180075237aC4426ac4",
-    contract_abi: GOERLI_CONTRACT_ABI
+    // contract_address: "0x48970e9366E603eF443B07180075237aC4426ac4",
+    contract_abi: GOERLI_CONTRACT_ABI,
   },
   // Gnosis
   100: {
     root_aggregator_id: 1,
     contract_address: "0x274f031d2E7f97A0395451DCb19108bB94bBb3f4",
-    contract_abi: undefined
-  }
-}
+    contract_abi: undefined,
+  },
+};
 
 /*
 Prev Goerli

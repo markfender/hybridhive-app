@@ -39,3 +39,8 @@
 .cap-label, .account-table th {
   @apply uppercase text-gray-500;
 }
+
+li {
+  list-style-type: initial;
+  padding-left: 1em;
+}
