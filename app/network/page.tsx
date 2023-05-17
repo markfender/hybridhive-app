@@ -4,12 +4,6 @@ import { useContext, useEffect, useState } from "react";
 import { WrapperContext } from "../WrapperContext";
 import { BigNumber } from "ethers";
 
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
-
 enum EntityType {
   Token = 1,
   Aggregator = 2,
@@ -63,10 +57,10 @@ export default function Network() {
 
   return wrapperContext ? (
     tree ? (
-      <>
-        <h1>{tree.name}</h1>
+      <div style={{ width: "100%" }}>
+        <h1>Network structure</h1>
         {generateMarkup(tree, true)}
-      </>
+      </div>
     ) : (
       <>Waiting for tree...</>
     )
@@ -78,12 +72,50 @@ export default function Network() {
 function generateMarkup(entityNode: EntityNode, hideName?: boolean) {
   return (
     <>
-      {!hideName && entityNode.name}
-      <ul>
-        {entityNode.subentities?.map((e, i) => (
-          <li key={i}>{e.subentities ? generateMarkup(e) : e.name}</li>
-        ))}
-      </ul>
+      <div className="mx-auto max-w-lg pl-10">
+        <div className="divide-y divide-gray-100">
+          <details className="group" open>
+            <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-lg font-medium text-secondary-900 group-open:text-primary-500">
+              {entityNode.name}
+              <div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  className="block h-5 w-5 group-open:hidden"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 4.5v15m7.5-7.5h-15"
+                  />
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  className="hidden h-5 w-5 group-open:block"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M19.5 12h-15"
+                  />
+                </svg>
+              </div>
+            </summary>
+            <div className="pb-4 text-secondary-500">
+              {entityNode.subentities?.map((e, i) =>
+                e.subentities ? generateMarkup(e) : <li key={i}>{e.name}</li>
+              )}
+            </div>
+          </details>
+        </div>
+      </div>
     </>
   );
 }
