@@ -21,6 +21,7 @@ let CONTRACT_ADDRESS = "0x64e0791Afa5FF37b5Cce3939aaCA72A500e65F2A"; //"0x6256e1
 
 import CONTRACT_ABI from "@/abi/gnosis_abi.json";
 import { WrapperContext } from "./WrapperContext";
+import { BigNumber } from "ethers";
 
 const Wrapper: React.FC<PropsWithChildren> = ({ children }) => {
   const [contract, setContract] = useState<any>();
@@ -113,6 +114,7 @@ const Wrapper: React.FC<PropsWithChildren> = ({ children }) => {
         const tokenIds: number[] = await contract.call("getTokensInNetwork", [
           ROOT_AGGREGATOR_ID,
         ]);
+        // .map((e: BigNumber) => e.toNumber());
         setTokenIds(tokenIds);
 
         //alert("Tokens in network:" + tokenIds.join(", "))
@@ -268,6 +270,7 @@ const Wrapper: React.FC<PropsWithChildren> = ({ children }) => {
         rootAggregatorId: ROOT_AGGREGATOR_ID,
         networkName: network,
         denominator,
+        address,
       }}
     >
       {children}
