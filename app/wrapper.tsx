@@ -17,7 +17,8 @@ const ROOT_AGGREGATOR_ID = 7;
 
 // GNOSIS ONLY
 //const CONTRACT_ADDRESS = "0x274f031d2E7f97A0395451DCb19108bB94bBb3f4"
-let CONTRACT_ADDRESS = "0x64e0791Afa5FF37b5Cce3939aaCA72A500e65F2A"; //"0x6256e164DcDE2a6EFfc9b6F3dFa072C9A5e67C29"
+// UPDATING CONTRACT DONT FORGET TO UPDATE ABI
+let CONTRACT_ADDRESS = "0x2D551a27Ed9DD5129D3364AdF327B13cDcB2E940"; //"0x6256e164DcDE2a6EFfc9b6F3dFa072C9A5e67C29"
 
 import CONTRACT_ABI from "@/abi/gnosis_abi.json";
 import { WrapperContext } from "./WrapperContext";
@@ -65,7 +66,7 @@ const Wrapper: React.FC<PropsWithChildren> = ({ children }) => {
           setNetwork("Goerli");
 
           // alert("we are on goerli")
-          contract_address = "0x64e0791Afa5FF37b5Cce3939aaCA72A500e65F2A";
+          contract_address = CONTRACT_ADDRESS;
           contract_abi = CONTRACT_ABI;
         } else if (chainId == Gnosis.chainId) {
           setNetwork("Gnosis");
@@ -105,10 +106,10 @@ const Wrapper: React.FC<PropsWithChildren> = ({ children }) => {
 
         setContract(contract);
 
-        const denominator =
-          1000000000 || (await contract.call("DENOMINATOR", [])).toNumber();
+        let denominator = await contract.call("DENOMINATOR", []);
+        denominator = denominator * denominator; // @todo replace after DENOMINATOR update 
         setDenominator(denominator);
-
+            
         //alert("Denominator:" + String(denominator))
 
         const tokenIds: number[] = await contract.call("getTokensInNetwork", [
@@ -131,7 +132,7 @@ const Wrapper: React.FC<PropsWithChildren> = ({ children }) => {
           };
         });
 
-        const balancePromise = Promise.all(
+        const balancePromise = await Promise.all(
           tokenIds.map((id) => contract.call("getTokenBalance", [id, address]))
         );
         const allowedPromise = Promise.all(
@@ -158,29 +159,33 @@ const Wrapper: React.FC<PropsWithChildren> = ({ children }) => {
         );
 
         //alert("Display tokens:" + displayTokenIds.join(", "))
-
         const globalSharePromise = Promise.all(
           displayTokenIds.map((id) =>
-            contract.call("getGlobalTokenShare", [
+            contract.call("getGlobalValueShare", [
               ROOT_AGGREGATOR_ID,
+              1, // TOKEN entity type
               id,
               tokenData[id]["balance"],
             ])
           )
         );
+
         const tokenNamePromise = Promise.all(
           displayTokenIds.map((id) => contract.call("getEntityName", [1, id]))
         );
 
         const globalShareResult = await globalSharePromise;
         const tokenNameResult = await tokenNamePromise;
-
-        displayTokenIds.forEach((item, index) => {
-          tokenData[item]["global_share"] = globalShareResult[index].toNumber();
-          tokenData[item]["global_share_perc"] =
-            (globalShareResult[index].toNumber() / denominator) * 100;
-          tokenData[item]["token_name"] = tokenNameResult[index];
-        });
+        try {
+          displayTokenIds.forEach((item, index) => {
+            tokenData[item]["global_share"] = globalShareResult[index];
+            tokenData[item]["global_share_perc"] =
+              globalShareResult[index]/denominator;
+            tokenData[item]["token_name"] = tokenNameResult[index];
+          });
+        } catch (e) {
+          console.log(e);
+        }
 
         //alert(JSON.stringify(tokenData))
 

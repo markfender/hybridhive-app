@@ -50,21 +50,20 @@ export default function Account() {
           filteredTokens.map(async (t) => ({
             ...t,
             globalShare: (
-              await contract.call("getGlobalTokenShare", [
+              await contract.call("getGlobalValueShare", [
                 rootAggregatorId,
+                1,
                 t.id,
                 t.balance,
               ])
-            ).toNumber(),
+            ),
             name: await contract.call("getEntityName", [1, t.id]),
           }))
         )
           .then((tokens) =>
             tokens.map((t) => ({
               ...t,
-              globalShareAsPerc: +((t.globalShare / denominator) * 100).toFixed(
-                5
-              ),
+              globalShareAsPerc: +((t.globalShare)/denominator),
             }))
           )
           .then((detailedTokens) =>

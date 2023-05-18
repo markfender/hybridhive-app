@@ -20,11 +20,14 @@ export default function Network() {
   useEffect(() => {
     if (!wrapperContext) return;
 
-    const { contract, rootAggregatorId } = wrapperContext;
+    const { contract, rootAggregatorId, denominator } = wrapperContext;
 
     async function lookUpToken(tokenId: number) {
+      const totalTokenBalance = await contract.call("getTotalSupply", [1, tokenId]);
+      const globalShare = await contract.call("getGlobalValueShare", [rootAggregatorId, 1, tokenId, totalTokenBalance]);
       return {
         name: await contract.call("getEntityName", [1, tokenId]),
+        globalShare: globalShare/denominator
         // type: EntityType.Token,
       };
     }
@@ -38,9 +41,16 @@ export default function Network() {
           type,
           subentities.map((e) => e.toNumber()),
         ]);
+      let globalShare;
+      if(rootAggregatorId != aggregatorId) {
+        globalShare = await contract.call("getGlobalAggregatorShare", [rootAggregatorId, aggregatorId]);
+      } else if(rootAggregatorId == aggregatorId) {
+        globalShare = 100 * denominator;
+      }
 
       return {
         name,
+        globalShare: globalShare/denominator,
         // type: EntityType.Aggregator,
         subentities: await Promise.all(
           aggregatorSubentities.map(
@@ -72,23 +82,23 @@ export default function Network() {
 function generateMarkup(entityNode: EntityNode, hideName?: boolean) {
   return (
     <>
-      <div className="mx-auto max-w-lg pl-10">
+      <div key={`node-${entityNode.name}`} className="mx-auto max-w-lg pl-10">
         <div className="divide-y divide-gray-100">
           <details className="group" open>
             <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-lg font-medium text-secondary-900 group-open:text-primary-500">
-              {entityNode.name}
+              {entityNode.name} {entityNode.globalShare.toString()} %
               <div>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke-width="1.5"
+                  strokeWidth="1.5"
                   stroke="currentColor"
                   className="block h-5 w-5 group-open:hidden"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d="M12 4.5v15m7.5-7.5h-15"
                   />
                 </svg>
@@ -96,13 +106,13 @@ function generateMarkup(entityNode: EntityNode, hideName?: boolean) {
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke-width="1.5"
+                  strokeWidth="1.5"
                   stroke="currentColor"
                   className="hidden h-5 w-5 group-open:block"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d="M19.5 12h-15"
                   />
                 </svg>
@@ -110,7 +120,7 @@ function generateMarkup(entityNode: EntityNode, hideName?: boolean) {
             </summary>
             <div className="pb-4 text-secondary-500">
               {entityNode.subentities?.map((e, i) =>
-                e.subentities ? generateMarkup(e) : <li key={i}>{e.name}</li>
+                e.subentities ? generateMarkup(e) : <li key={`${i}-${e.name}`}>{e.name} {e.globalShare.toString()} %</li>
               )}
             </div>
           </details>

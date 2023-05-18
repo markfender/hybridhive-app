@@ -2,14 +2,11 @@
 
 import './globals.css'
 
-import { ThirdwebProvider } from "@thirdweb-dev/react";
-
 import { Inter } from 'next/font/google'
 
+import { ConnectWallet, ThirdwebProvider } from "@thirdweb-dev/react";
+
 import Link from 'next/link'
-
-import { ConnectWallet } from "@thirdweb-dev/react";
-
 import Image from 'next/image'
 
 import HHLogo from '@/public/hhlogo.svg'
