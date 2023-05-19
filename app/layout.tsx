@@ -17,6 +17,7 @@ import NavAccount from '@/public/account.svg'
 import NavTransfer from '@/public/transfer.svg'
 import NavNetwork from '@/public/network.svg'
 
+import { HomeIcon } from '@heroicons/react/20/solid'
 import { Goerli, Gnosis } from '@thirdweb-dev/chains'
 import Wrapper from "./wrapper";
 
@@ -35,6 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <title>hybridhive</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -67,7 +69,7 @@ export default function RootLayout({
           autoConnect={false}
         >
           <div className="flex flex-col flex-start min-h-screen">
-            <header className="flex flex-row justify-center p-[50px] bg-[#4D4D4D] grow-0">
+            <header className="flex flex-row justify-center p-[50px] bg-[#151515] grow-0">
               <div className="flex flex-row justify-between align-center w-3/4 max-w-screen-lg">
                 <div className="flex flex-row items-center">
                   <Image src={HHLogo} alt="" className="mr-4" width={100} />
@@ -79,7 +81,7 @@ export default function RootLayout({
             <nav className="flex flex-row justify-center bg-[#FFD12E] p-[25px] grow-0">
               <div className="flex flex-row w-3/4 max-w-screen-lg text-white nav-bar">
                 <Link href="/">
-                  <Image src={NavStart} alt="" height={25} />
+                  <HomeIcon width={25} height={25} />
                   Start
                 </Link>
                 <Link href="/account">

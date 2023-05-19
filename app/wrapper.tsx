@@ -18,7 +18,7 @@ const ROOT_AGGREGATOR_ID = 7;
 // GNOSIS ONLY
 //const CONTRACT_ADDRESS = "0x274f031d2E7f97A0395451DCb19108bB94bBb3f4"
 // UPDATING CONTRACT DONT FORGET TO UPDATE ABI
-let CONTRACT_ADDRESS = "0x2D551a27Ed9DD5129D3364AdF327B13cDcB2E940"; //"0x6256e164DcDE2a6EFfc9b6F3dFa072C9A5e67C29"
+let CONTRACT_ADDRESS = "0x4f5E97dF4a218eD78Ad997a117178119B431699F"; //"0x6256e164DcDE2a6EFfc9b6F3dFa072C9A5e67C29"
 
 import CONTRACT_ABI from "@/abi/gnosis_abi.json";
 import { WrapperContext } from "./WrapperContext";
@@ -209,7 +209,6 @@ const Wrapper: React.FC<PropsWithChildren> = ({ children }) => {
 
     return (
       <>
-        <h1>Status</h1>
         <p>No wallet connected.</p>
       </>
     );
@@ -218,7 +217,6 @@ const Wrapper: React.FC<PropsWithChildren> = ({ children }) => {
   if (tokenDataStatus == "loading" || userTokenData == null) {
     return (
       <>
-        <h1>Status</h1>
         <p>Loading your token balances...</p>
       </>
     );
@@ -227,7 +225,6 @@ const Wrapper: React.FC<PropsWithChildren> = ({ children }) => {
   if (error) {
     return (
       <>
-        <h1>Status</h1>
         <p>Error: {error}</p>
       </>
     );
@@ -236,7 +233,6 @@ const Wrapper: React.FC<PropsWithChildren> = ({ children }) => {
   if (network == "unsupported") {
     return (
       <>
-        <h1>Status</h1>
         <p>
           The network that you chose is unsupported. Supported: Goerli, Gnosis.
         </p>

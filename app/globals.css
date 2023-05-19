@@ -8,9 +8,15 @@
 
 .nav-bar a {
   @apply flex flex-row flex-nowrap items-center;
-  @apply mr-[30px] py-4 px-6 bg-[#FF3D00] font-semibold text-xl;
+  @apply mr-[30px] py-4 px-6 bg-[#151515] font-semibold text-xl;
   border-radius: 10px;
+  transition: 0.2s all;
 }
+.nav-bar a:hover {
+  @apply bg-[#474603];
+  transition: 0.2s all;
+}
+
 
 .nav-bar img {
   @apply mr-[10px]

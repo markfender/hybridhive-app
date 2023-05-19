@@ -4,7 +4,7 @@ export default function Start() {
   return (
     <>
       <h1>HybridHive</h1>
-      <p>A protocol to manages a basket of tokens, tries to combine the benefits of single-currency and multi-currency systems</p>
+      <p>a protocol to combine the benefits of single and multi-currency systems</p>
     </>
   )
 }

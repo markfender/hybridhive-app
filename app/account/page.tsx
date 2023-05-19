@@ -86,7 +86,6 @@ export default function Account() {
   if (!wrapperContext) {
     return (
       <>
-        <h1>Status</h1>
         <p>Waiting for wrapperContext...</p>
       </>
     );
