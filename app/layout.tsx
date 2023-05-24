@@ -12,12 +12,8 @@ import Image from 'next/image'
 import HHLogo from '@/public/hhlogo.svg'
 //import HHLogo from '@/public/hybridhive-logo.png'
 
-import NavStart from '@/public/start.svg'
-import NavAccount from '@/public/account.svg'
-import NavTransfer from '@/public/transfer.svg'
-import NavNetwork from '@/public/network.svg'
+import { ArrowsRightLeftIcon, HomeIcon, UserCircleIcon, ShareIcon } from '@heroicons/react/20/solid'
 
-import { HomeIcon } from '@heroicons/react/20/solid'
 import { Goerli, Gnosis } from '@thirdweb-dev/chains'
 import Wrapper from "./wrapper";
 
@@ -81,19 +77,19 @@ export default function RootLayout({
             <nav className="flex flex-row justify-center bg-[#FFD12E] p-[25px] grow-0">
               <div className="flex flex-row w-3/4 max-w-screen-lg text-white nav-bar">
                 <Link href="/">
-                  <HomeIcon width={25} height={25} />
-                  Start
+                  <HomeIcon className="mr-2" width={25} height={25} />
+                  Home
                 </Link>
                 <Link href="/account">
-                  <Image src={NavAccount} alt="" height={30} />
+                  <UserCircleIcon className="mr-2" width={25} height={25} />
                   Account
                 </Link>
                 <Link href="/transfer">
-                  <Image src={NavTransfer} alt="" height={30} />
+                  <ArrowsRightLeftIcon className="mr-2" width={25} height={25} />
                   Transfer
                 </Link>
                 <Link href="/network">
-                  <Image src={NavNetwork} alt="" height={30} />
+                  <ShareIcon className="rotate-90 mr-2" width={25} height={25} />
                   Network
                 </Link>
               </div>

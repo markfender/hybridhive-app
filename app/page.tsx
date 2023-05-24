@@ -5,6 +5,19 @@ export default function Start() {
     <>
       <h1>HybridHive</h1>
       <p>a protocol to combine the benefits of single and multi-currency systems</p>
+      <div className="max-w-md mx-auto">
+        <h2>Search network</h2>
+        <div className="mb-4">
+            <input type="text" id="searchInput" className="w-full px-4 py-2 rounded-lg border border-gray-300" placeholder="Enter your search query" />
+        </div>
+        <div className="mb-4">
+            <button id="searchButton" className="px-4 py-2 rounded-lg bg-blue-500 text-white">Check network</button>
+        </div>
+
+        <h2>Added networks</h2>
+        <div id="searchResults" className="bg-white shadow">
+        </div>
+      </div>
     </>
   )
 }
