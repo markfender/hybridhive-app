@@ -65,31 +65,31 @@ export default function RootLayout({
           autoConnect={false}
         >
           <div className="flex flex-col flex-start min-h-screen">
-            <header className="flex flex-row justify-center p-[50px] bg-[#151515] grow-0">
-              <div className="flex flex-row justify-between align-center w-3/4 max-w-screen-lg">
+            <header className="flex flex-row p-[15px] bg-[#151515] grow-0">
+              <div className="flex flex-row justify-between align-center w-[100%]">
                 <div className="flex flex-row items-center">
-                  <Image src={HHLogo} alt="" className="mr-4" width={100} />
-                  <h1 className="text-5xl text-white">hybridhive</h1>
+                  <Image src={HHLogo} alt="" className="mr-4 w-[48px]"/>
+                  <h1 className="text-[0px] text-white">hybridhive</h1>
                 </div>
                 <ConnectWallet className="connect-wallet-button" />
               </div>
             </header>
-            <nav className="flex flex-row justify-center bg-[#FFD12E] p-[25px] grow-0">
-              <div className="flex flex-row w-3/4 max-w-screen-lg text-white nav-bar">
+            <nav className="flex flex-row bg-[#FFD12E] p-[15px] grow-0 landscape:justify-center">
+              <div className="flex flex-row justify-between w-[100%] text-white nav-bar text-[0px] landscape:text-sm sm:w-3/4">
                 <Link href="/">
-                  <HomeIcon className="mr-2" width={25} height={25} />
+                  <HomeIcon className="" width={25} height={25} />
                   Home
                 </Link>
                 <Link href="/account">
-                  <UserCircleIcon className="mr-2" width={25} height={25} />
+                  <UserCircleIcon className="" width={25} height={25} />
                   Account
                 </Link>
                 <Link href="/transfer">
-                  <ArrowsRightLeftIcon className="mr-2" width={25} height={25} />
+                  <ArrowsRightLeftIcon className="" width={25} height={25} />
                   Transfer
                 </Link>
                 <Link href="/network">
-                  <ShareIcon className="rotate-90 mr-2" width={25} height={25} />
+                  <ShareIcon className="rotate-90" width={25} height={25} />
                   Network
                 </Link>
               </div>
@@ -99,7 +99,7 @@ export default function RootLayout({
                 <Wrapper>{children}</Wrapper>
               </div>
             </section>
-            <footer className="flex flex-row justify-center bg-[#EEEEEE] py-[25px] grow-0">
+            <footer className="flex flex-row justify-center bg-[#EEEEEE] p-[15px] grow-0">
               <p className="text-lg text-[#222]">© 2023 hybridhive</p>
             </footer>
           </div>
