@@ -11,6 +11,7 @@
   @apply mr-[30px] py-4 px-6 bg-[#151515] font-semibold text-xl; */
   @apply flex flex-row items-center;
   @apply py-3 px-5 bg-[#151515];
+  @apply landscape:py-2 landscape:px-3;
   border-radius: 10px;
   transition: 0.2s all;
 }
@@ -20,9 +21,9 @@
 }
 
 
-.nav-bar img {
-  /* @apply mr-[10px] */
-}
+/* .nav-bar img {
+  @apply mr-[10px]
+} */
 
 .main-section h1 {
   @apply text-5xl mb-4;

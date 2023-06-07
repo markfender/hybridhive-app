@@ -77,19 +77,19 @@ export default function RootLayout({
             <nav className="flex flex-row bg-[#FFD12E] p-[15px] grow-0 landscape:justify-center">
               <div className="flex flex-row justify-between w-[100%] text-white nav-bar text-[0px] landscape:text-sm sm:w-3/4">
                 <Link href="/">
-                  <HomeIcon className="" width={25} height={25} />
+                  <HomeIcon className="landscape:mr-[10px]" width={25} height={25} />
                   Home
                 </Link>
                 <Link href="/account">
-                  <UserCircleIcon className="" width={25} height={25} />
+                  <UserCircleIcon className="landscape:mr-[10px]" width={25} height={25} />
                   Account
                 </Link>
                 <Link href="/transfer">
-                  <ArrowsRightLeftIcon className="" width={25} height={25} />
+                  <ArrowsRightLeftIcon className="landscape:mr-[10px]" width={25} height={25} />
                   Transfer
                 </Link>
                 <Link href="/network">
-                  <ShareIcon className="rotate-90" width={25} height={25} />
+                  <ShareIcon className="rotate-90 landscape:mr-[10px]" width={25} height={25} />
                   Network
                 </Link>
               </div>
