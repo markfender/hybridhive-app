@@ -6,6 +6,31 @@
   align-self: center !important;
 }
 
+p,
+a,
+span {
+  @apply text-[16px] md:text-[18px] lg:text-[20px] xl:text-[22px] 2xl:text-[24px];
+}
+
+h1 {
+  @apply text-[2.4rem];
+}
+h2 {
+  @apply text-[2.2rem];
+}
+h3 {
+  @apply text-[2rem];
+}
+h4 {
+  @apply text-[1.8rem];
+}
+h5 {
+  @apply text-[1.6rem];
+}
+h6 {
+  @apply text-[1.4rem];
+}
+
 .nav-bar a {
   /* @apply flex flex-row flex-nowrap items-center;
   @apply mr-[30px] py-4 px-6 bg-[#151515] font-semibold text-xl; */
@@ -19,25 +44,25 @@
   @apply bg-[#474603];
   transition: 0.2s all;
 }
-
 /* 
 .nav-bar img {
   @apply mr-[10px]
 } */
 
-.main-section h1 {
+/* .main-section h1 {
   @apply text-[29px];
-}
+} */
 
-.main-section p {
+/* .main-section p {
   @apply text-[16px] leading-loose;
-}
+} */
 
 .account-table {
-  min-width: 500px; 
+  min-width: 500px;
 }
 
-.account-table td, .account-table th {
+.account-table td,
+.account-table th {
   @apply p-[10px] text-xl font-normal text-left;
 }
 
@@ -45,7 +70,8 @@
   @apply border-t border-gray-300;
 }
 
-.cap-label, .account-table th {
+.cap-label,
+.account-table th {
   @apply uppercase text-gray-500;
 }
 
