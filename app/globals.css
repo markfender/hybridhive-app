@@ -33,11 +33,8 @@ h6 {
 }
 
 .nav-bar a {
-  /* @apply flex flex-row flex-nowrap items-center;
-  @apply mr-[30px] py-4 px-6 bg-[#151515] font-semibold text-xl; */
   @apply flex flex-row items-center;
   @apply py-3 px-5 mb-[10px] bg-[#151515];
-  /* @apply landscape:py-2 landscape:px-3; */
   border-radius: 10px;
   transition: 0.2s all;
 }
@@ -45,20 +42,8 @@ h6 {
   @apply bg-[#474603];
   transition: 0.2s all;
 }
-/* 
-.nav-bar img {
-  @apply mr-[10px]
-} */
 
-/* .main-section h1 {
-  @apply text-[29px];
-} */
-
-/* .main-section p {
-  @apply text-[16px] leading-loose;
-} */
-
-.account-table {
+/* .account-table {
   min-width: 500px;
 }
 
@@ -69,14 +54,14 @@ h6 {
 
 .account-table tbody tr {
   @apply border-t border-gray-300;
-}
+} */
 
 .cap-label,
 .account-table th {
   @apply uppercase text-gray-500;
 }
 
-li {
+/* li {
   list-style-type: initial;
   padding-left: 1em;
-}
+} */

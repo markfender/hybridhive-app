@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useEffect, useState } from "react";
 
@@ -49,21 +49,19 @@ export default function Account() {
         Promise.all(
           filteredTokens.map(async (t) => ({
             ...t,
-            globalShare: (
-              await contract.call("getGlobalValueShare", [
-                rootAggregatorId,
-                1,
-                t.id,
-                t.balance,
-              ])
-            ),
+            globalShare: await contract.call("getGlobalValueShare", [
+              rootAggregatorId,
+              1,
+              t.id,
+              t.balance,
+            ]),
             name: await contract.call("getEntityName", [1, t.id]),
           }))
         )
           .then((tokens) =>
             tokens.map((t) => ({
               ...t,
-              globalShareAsPerc: +((t.globalShare)/denominator),
+              globalShareAsPerc: +(t.globalShare / denominator),
             }))
           )
           .then((detailedTokens) =>
@@ -95,13 +93,13 @@ export default function Account() {
     <>
       <h1>Account</h1>
 
-      <div className="text-2xl mt-[50px] mb-[60px]">
+      <div className="flex flex-row items-center">
         <span className="cap-label">Total global share:</span>
-        <span className="text-black p-4 bg-[#FFF4D8] font-bold ml-4">
+        <span className="text-black p-4 bg-[#FFF4D8] font-bold">
           {totalGlobalShare} %
         </span>
       </div>
-      <table className="account-table">
+      <table className="account-table mt-4">
         <thead>
           <tr>
             <th>Token</th>
@@ -120,10 +118,10 @@ export default function Account() {
         </tbody>
       </table>
 
-      <div className="mt-[40px]">
-        <h2 className="text-5xl mb-4">Info</h2>
-        <p className="text-base">Wallet: {address}</p>
-        <p className="text-base">Network: {networkName}</p>
+      <div className="mt-4">
+        <h2 className="">Info</h2>
+        <p className="break-all">Wallet: {address}</p>
+        <p className="">Network: {networkName}</p>
       </div>
     </>
   );

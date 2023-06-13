@@ -22,7 +22,7 @@ export default function Start() {
           </button>
         </div>
 
-        <h3>Added networks</h3>
+        <h3 className=" hidden">Added networks</h3>
         <div id="searchResults" className="bg-white shadow"></div>
       </div>
     </>

@@ -145,8 +145,8 @@ export default function RootLayout({
               </div>
             </nav>
 
-            <section className="flex flex-row justify-center px-4 grow">
-              <div className="main-section flex flex-col items-center">
+            <section className="flex flex-row justify-center grow">
+              <div className="flex flex-col w-full md:w-3/4 px-[16px] my-4">
                 <Wrapper>{children}</Wrapper>
               </div>
             </section>
