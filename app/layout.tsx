@@ -5,6 +5,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 
 import { ConnectWallet, ThirdwebProvider } from "@thirdweb-dev/react";
+// import { useConnectionStatus } from "@thirdweb-dev/react";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -37,12 +38,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const [collapsed, setSidebarCollapsed] = useState(true);
+  let connectionStatus;
 
   const switchSidebar = () => {
-    console.log("sidebar was switched");
     setSidebarCollapsed(!collapsed);
   };
-  // const closeSidebar = () => {}
 
   return (
     <html lang="en">
@@ -80,19 +80,23 @@ export default function RootLayout({
           autoConnect={false}
         >
           <div className="flex flex-col flex-start min-h-screen">
-            <header className="flex flex-row p-[16px] bg-[#151515] grow-0">
+            {/* <header className="flex flex-row p-[16px] bg-[#151515] grow-0"> */}
+            <header className="flex flex-row p-[16px] bg-white grow-0">
               <div className="flex flex-row justify-between align-center w-[100%]">
                 <div className="flex flex-row items-center">
                   <button
                     onClick={switchSidebar}
-                    className="flex justify-center items-center w-[52px] h-[52px] bg-[#FFD12E] rounded-full md:rounded-none fixed bottom-[30px] right-[40px] md:relative md:bottom-0 md:right-0 md:bg-transparent md:text-white z-[98] text-[20px] md:text-[22px] font-bold"
+                    className="flex justify-center items-center w-[52px] h-[52px] bg-yellow-300 rounded-full md:rounded-none fixed bottom-[30px] right-[40px] md:relative md:bottom-0 md:right-0 md:bg-transparent md:text-slate-900 z-[98] text-[20px] md:text-[22px] font-bold"
                   >
                     &#9776;
                   </button>
                   <Image src={HHLogo} alt="" className="mr-4 w-[32px]" />
                   <h1 className="text-[0px] text-white">hybridhive</h1>
                 </div>
-                <ConnectWallet className="connect-wallet-button" />
+                <ConnectWallet
+                  className="connect-wallet-button"
+                  theme="light"
+                />
               </div>
             </header>
             <nav
@@ -141,12 +145,12 @@ export default function RootLayout({
               </div>
             </nav>
 
-            <section className="flex flex-row justify-center p-[15px] grow">
-              <div className="main-section flex flex-col items-start">
+            <section className="flex flex-row justify-center px-4 grow">
+              <div className="main-section flex flex-col items-center">
                 <Wrapper>{children}</Wrapper>
               </div>
             </section>
-            <footer className="flex flex-row justify-center bg-[#EEEEEE] py-[5px] grow-0">
+            <footer className="flex flex-row justify-center bg-white py-[5px] grow-0">
               <p className="text-lg text-[#222]">© 2023 hybridhive</p>
             </footer>
           </div>

@@ -107,9 +107,9 @@ const Wrapper: React.FC<PropsWithChildren> = ({ children }) => {
         setContract(contract);
 
         let denominator = await contract.call("DENOMINATOR", []);
-        denominator = denominator * denominator; // @todo replace after DENOMINATOR update 
+        denominator = denominator * denominator; // @todo replace after DENOMINATOR update
         setDenominator(denominator);
-            
+
         //alert("Denominator:" + String(denominator))
 
         const tokenIds: number[] = await contract.call("getTokensInNetwork", [
@@ -180,7 +180,7 @@ const Wrapper: React.FC<PropsWithChildren> = ({ children }) => {
           displayTokenIds.forEach((item, index) => {
             tokenData[item]["global_share"] = globalShareResult[index];
             tokenData[item]["global_share_perc"] =
-              globalShareResult[index]/denominator;
+              globalShareResult[index] / denominator;
             tokenData[item]["token_name"] = tokenNameResult[index];
           });
         } catch (e) {
@@ -209,7 +209,18 @@ const Wrapper: React.FC<PropsWithChildren> = ({ children }) => {
 
     return (
       <>
-        <p>No wallet connected.</p>
+        <div className="flex flex-col relative max-w-5xl mx-auto py-20 sm:py-24 lg:py-28">
+          <h1 className="self-center md:self-start h-[4rem] sm:h-[5rem] lg:h-[6.5rem] font-extrabold text-transparent text-6xl sm:text-7xl lg:text-8xl bg-clip-text bg-gradient-to-r from-orange-600 to-yellow-300">
+            hybridhive
+          </h1>
+          <h1 className="text-slate-900 font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-center dark:text-white">
+            a protocol to combine the benefits of single and multi-currency
+            systems
+          </h1>
+          <p className="mt-9 text-lg text-slate-600 text-center max-w-3xl mx-auto dark:text-slate-400">
+            Connect wallet to start with hybridhive
+          </p>
+        </div>
       </>
     );
   }

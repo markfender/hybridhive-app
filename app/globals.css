@@ -4,6 +4,7 @@
 
 .connect-wallet-button {
   align-self: center !important;
+  @apply bg-gradient-to-r from-orange-600 to-yellow-300;
 }
 
 p,
