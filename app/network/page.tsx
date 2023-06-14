@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useContext, useEffect, useState } from "react";
 import { WrapperContext } from "../WrapperContext";
@@ -23,11 +23,19 @@ export default function Network() {
     const { contract, rootAggregatorId, denominator } = wrapperContext;
 
     async function lookUpToken(tokenId: number) {
-      const totalTokenBalance = await contract.call("getTotalSupply", [1, tokenId]);
-      const globalShare = await contract.call("getGlobalValueShare", [rootAggregatorId, 1, tokenId, totalTokenBalance]);
+      const totalTokenBalance = await contract.call("getTotalSupply", [
+        1,
+        tokenId,
+      ]);
+      const globalShare = await contract.call("getGlobalValueShare", [
+        rootAggregatorId,
+        1,
+        tokenId,
+        totalTokenBalance,
+      ]);
       return {
         name: await contract.call("getEntityName", [1, tokenId]),
-        globalShare: globalShare/denominator
+        globalShare: globalShare / denominator,
         // type: EntityType.Token,
       };
     }
@@ -42,15 +50,18 @@ export default function Network() {
           subentities.map((e) => e.toNumber()),
         ]);
       let globalShare;
-      if(rootAggregatorId != aggregatorId) {
-        globalShare = await contract.call("getGlobalAggregatorShare", [rootAggregatorId, aggregatorId]);
-      } else if(rootAggregatorId == aggregatorId) {
+      if (rootAggregatorId != aggregatorId) {
+        globalShare = await contract.call("getGlobalAggregatorShare", [
+          rootAggregatorId,
+          aggregatorId,
+        ]);
+      } else if (rootAggregatorId == aggregatorId) {
         globalShare = 100 * denominator;
       }
 
       return {
         name,
-        globalShare: globalShare/denominator,
+        globalShare: globalShare / denominator,
         // type: EntityType.Aggregator,
         subentities: await Promise.all(
           aggregatorSubentities.map(
@@ -67,9 +78,9 @@ export default function Network() {
 
   return wrapperContext ? (
     tree ? (
-      <div style={{ width: "100%" }}>
+      <div className="w-full">
         <h1>Network structure</h1>
-        {generateMarkup(tree, true)}
+        <div className="flex justify-center">{generateMarkup(tree, true)}</div>
       </div>
     ) : (
       <>Waiting for tree...</>
@@ -82,12 +93,15 @@ export default function Network() {
 function generateMarkup(entityNode: EntityNode, hideName?: boolean) {
   return (
     <>
-      <div key={`node-${entityNode.name}`} className="mx-auto max-w-lg pl-10">
+      <div
+        key={`node-${entityNode.name}`}
+        className="pl-3 sm:pl-4 md:pl-5 lg:pl-10"
+      >
         <div className="divide-y divide-gray-100">
           <details className="group" open>
-            <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-lg font-medium text-secondary-900 group-open:text-primary-500">
+            <summary className="flex cursor-pointer list-none items-center py-4 text-lg font-medium text-secondary-900 group-open:text-primary-500">
               {entityNode.name} {entityNode.globalShare.toString()} %
-              <div>
+              <div className="ml-4">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -120,7 +134,13 @@ function generateMarkup(entityNode: EntityNode, hideName?: boolean) {
             </summary>
             <div className="pb-4 text-secondary-500">
               {entityNode.subentities?.map((e, i) =>
-                e.subentities ? generateMarkup(e) : <li key={`${i}-${e.name}`}>{e.name} {e.globalShare.toString()} %</li>
+                e.subentities ? (
+                  generateMarkup(e)
+                ) : (
+                  <li key={`${i}-${e.name}`}>
+                    {e.name} {e.globalShare.toString()} %
+                  </li>
+                )
               )}
             </div>
           </details>
