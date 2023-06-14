@@ -86,7 +86,7 @@ export default function RootLayout({
                 <div className="flex flex-row items-center">
                   <button
                     onClick={switchSidebar}
-                    className="hidden flex justify-center items-center w-[52px] h-[52px] bg-yellow-300 rounded-full md:rounded-none fixed bottom-[30px] right-[40px] md:relative md:bottom-0 md:right-0 md:bg-transparent md:text-slate-900 z-[98] text-[20px] md:text-[22px] font-bold"
+                    className="flex justify-center items-center w-[52px] h-[52px] bg-yellow-300 rounded-full md:rounded-none fixed bottom-[30px] right-[40px] md:relative md:bottom-0 md:right-0 md:bg-transparent md:text-slate-900 z-[98] text-[20px] md:text-[22px] font-bold"
                   >
                     &#9776;
                   </button>
