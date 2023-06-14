@@ -209,7 +209,7 @@ const Wrapper: React.FC<PropsWithChildren> = ({ children }) => {
 
     return (
       <>
-        <div className="flex flex-col relative max-w-5xl mx-auto py-20 sm:py-24 lg:py-28">
+        <div className="flex flex-col relative max-w-5xl mx-auto py-10">
           <h1 className="self-center md:self-start h-[4rem] sm:h-[5rem] lg:h-[6.5rem] font-extrabold text-transparent text-6xl sm:text-7xl lg:text-8xl bg-clip-text bg-gradient-to-r from-orange-600 to-yellow-300">
             hybridhive
           </h1>
