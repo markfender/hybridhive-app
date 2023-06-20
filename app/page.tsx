@@ -3,9 +3,21 @@
 export default function Start() {
   return (
     <>
-      <div className="max-w-md mx-auto">
-        <h6>Search network</h6>
+      <h1>Home</h1>
+
+      <div
+        className="flex flex-col items-start mt-2 lg:ml-4"
+        style={{
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "1em",
+        }}
+      >
         <div className="mb-1">
+          <h6>Search network</h6>
           <input
             type="text"
             id="searchInput"

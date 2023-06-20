@@ -23,6 +23,8 @@ let CONTRACT_ADDRESS = "0x4f5E97dF4a218eD78Ad997a117178119B431699F"; //"0x6256e1
 import CONTRACT_ABI from "@/abi/gnosis_abi.json";
 import { WrapperContext } from "./WrapperContext";
 import { BigNumber } from "ethers";
+import LandingLayout from "./layout_landing";
+import MainLayout from "./layout_main";
 
 const Wrapper: React.FC<PropsWithChildren> = ({ children }) => {
   const [contract, setContract] = useState<any>();
@@ -208,7 +210,7 @@ const Wrapper: React.FC<PropsWithChildren> = ({ children }) => {
     if (error !== null) setError(null);
 
     return (
-      <>
+      <LandingLayout>
         <div className="flex flex-col relative max-w-5xl mx-auto py-10">
           <h1 className="self-center md:self-start h-[4rem] sm:h-[5rem] lg:h-[6.5rem] font-extrabold text-transparent text-6xl sm:text-7xl lg:text-8xl bg-clip-text bg-gradient-to-r from-orange-600 to-yellow-300">
             hybridhive
@@ -221,7 +223,7 @@ const Wrapper: React.FC<PropsWithChildren> = ({ children }) => {
             Connect wallet to start with hybridhive
           </p>
         </div>
-      </>
+      </LandingLayout>
     );
   }
 
@@ -285,7 +287,7 @@ const Wrapper: React.FC<PropsWithChildren> = ({ children }) => {
         address,
       }}
     >
-      {children}
+      <MainLayout>{children}</MainLayout>
     </WrapperContext.Provider>
   );
 };

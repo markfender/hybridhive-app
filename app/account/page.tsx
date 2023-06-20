@@ -92,34 +92,33 @@ export default function Account() {
   return (
     <>
       <h1>Account</h1>
-
-      <div className="flex flex-row items-center">
-        <span className="cap-label">Total global share:</span>
-        <span className="text-black p-4 bg-[#FFF4D8] font-bold">
-          {totalGlobalShare} %
-        </span>
-      </div>
-      <table className="account-table mt-4">
-        <thead>
-          <tr>
-            <th>Token</th>
-            <th>Balance</th>
-            <th>Global share</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredTokens.map((item, i) => (
-            <tr key={i}>
-              <td>{item.name}</td>
-              <td>{item.balance}</td>
-              <td>{item.globalShareAsPerc} %</td>
+      <div className="mt-2 lg:ml-4">
+        <div className="flex flex-row items-center">
+          <span className="cap-label">Total global share:</span>
+          <span className="text-black p-4 bg-[#FFF4D8] font-bold">
+            {totalGlobalShare} %
+          </span>
+        </div>
+        <table className="account-table mt-4">
+          <thead>
+            <tr>
+              <th>Token</th>
+              <th>Balance</th>
+              <th>Global share</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {filteredTokens.map((item, i) => (
+              <tr key={i}>
+                <td>{item.name}</td>
+                <td>{item.balance}</td>
+                <td>{item.globalShareAsPerc} %</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
 
-      <div className="mt-4">
-        <h2 className="">Info</h2>
+        <h2 className="mt-4">Info</h2>
         <p className="break-all">Wallet: {address}</p>
         <p className="">Network: {networkName}</p>
       </div>
