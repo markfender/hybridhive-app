@@ -27,9 +27,7 @@ export default function LandingLayout({
       </header>
 
       <section className="flex flex-row justify-center grow">
-        <div className="flex flex-col w-full md:w-3/4 px-[16px] my-4">
-          {children}
-        </div>
+        <div className="flex flex-col w-full md:w-3/4">{children}</div>
       </section>
       <footer className="flex flex-row justify-center bg-white py-[5px] grow-0">
         <p className="text-lg text-[#222]">© 2023 hybridhive</p>
